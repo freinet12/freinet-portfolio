@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="grid-container">
+        <div class="grid-item grid-item-nav" style="background-color: #000">
+            <Navbar />
+        </div>
+        <div class="grid-item grid-item-main">
+            <router-view></router-view>
+        </div>
+        <div class="grid-item grid-item-footer">
+            <Footer />
+        </div>
     </div>
-    <router-view />
-  </div>
 </template>
 
+<script>
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+
+export default {
+    name: 'app',
+    components: {
+        Footer,
+        Navbar,
+    },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css?family=Economica|Pacifico');
+
+body {
+    overflow: hidden;
+}
+.grid-container {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-areas:
+        'nav nav nav nav nav nav'
+        'main main main main main main'
+        'footer footer footer footer footer footer';
+    background-color: #e6e6e6;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto 1fr auto;
 }
 
-#nav {
-  padding: 30px;
+.grid-item-nav {
+    grid-area: nav;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9fafc;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.grid-item-main {
+    grid-area: main;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.grid-item-footer {
+    grid-area: footer;
 }
 </style>
